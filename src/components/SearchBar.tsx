@@ -1,6 +1,21 @@
+import React from 'react';
+
+import { Search } from '@material-ui/icons';
+
+const SearchBar: React.FC = () => {
+  return (
+    <Container>
+      <Search />
+      <StyledTextInput placeholder="Search" />
+    </Container>
+  );
+};
+
+export default SearchBar;
+
 import styled from 'styled-components';
 
-export const Container = styled.div`
+const Container = styled.div`
   svg {
     position: absolute;
     margin: 0.2rem 0.5rem;
@@ -10,7 +25,7 @@ export const Container = styled.div`
   }
 `;
 
-export const StyledTextInput = styled.input.attrs({ type: 'text' })`
+const StyledTextInput = styled.input.attrs({ type: 'text' })`
   width: 37.2rem;
   height: 2.3rem;
   background: #ffffff;

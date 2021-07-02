@@ -11,7 +11,9 @@ const Dashboard: React.FC = () => {
         <img src="" alt="" />
       </Header>
       <Body>
+        <br />
         <SearchBar />
+        <br />
         <Post
           username="Mauricio"
           profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
@@ -22,6 +24,7 @@ const Dashboard: React.FC = () => {
           laudantium quas eaque debitis voluptatibus veritatis quaerat
           exercitationem nesciunt eos corrupti!
         </Post>
+        <br />
         <Post
           username="Mauricio"
           profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"

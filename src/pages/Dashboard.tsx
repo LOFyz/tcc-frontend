@@ -48,6 +48,7 @@ const Header = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  background: #fff;
 
   h1 {
     font-family: 'Varela Round', sans-serif;

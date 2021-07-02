@@ -10,8 +10,8 @@ const SignUp: React.FC = () => {
           <ArrowBackIos />
         </a>
 
-        <Logo>
-          <img src="" alt="" /> Sign up
+        <Logo haveText={true}>
+          <img src="" alt="" /> Sign Up
         </Logo>
         <Form>
           <Name>
@@ -21,7 +21,7 @@ const SignUp: React.FC = () => {
           <input type="text" placeholder="Email" />
           <input type="text" placeholder="Password" />
           <input type="button" value="Submit" />
-          <a href="">{'Doesnt have an account?'}</a>
+          <a href="">{'Already have an account?'}</a>
         </Form>
       </SignUpContainer>
     </Container>
@@ -30,7 +30,7 @@ const SignUp: React.FC = () => {
 
 export default SignUp;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +39,7 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const SignUpContainer = styled.div`
+export const SignUpContainer = styled.div`
   width: 80%;
   height: 80%;
   background: rgba(0, 0, 0, 0.1);
@@ -66,7 +66,7 @@ const SignUpContainer = styled.div`
   }
 `;
 
-const Logo = styled.div`
+export const Logo = styled.div`
   display: flex;
   flex-direction: column;
   font-family: Roboto;
@@ -79,14 +79,16 @@ const Logo = styled.div`
   justify-content: center;
 
   img {
-    width: 5rem;
-    height: 5rem;
+    width: ${(p: { haveText?: boolean }) => (p.haveText ? '5rem' : '15rem')};
+    height: ${(p: { haveText?: boolean }) => (p.haveText ? '5rem' : '15rem')};
+    /* width: 5rem;
+    height: 5rem; */
     background: #338a3e;
     border-radius: 50%;
   }
 `;
 
-const Form = styled.div`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

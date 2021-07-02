@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import background from '../assets/background.svg';
 
 export default createGlobalStyle`
   * {
@@ -6,14 +7,25 @@ export default createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    font-size: 62.5%;
   }
 
   body {
-    background: #f0f0f5;
+    display: flex;
+    background: #f0f0f5 url(${background});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    flex-wrap: wrap;
     -webkit-font-smoothing: antialiased;
   }
 
-  body, input, button {
-    font: 16px 'Varela Round', sans-serif;
+  body, input, button, p {
+    font: 1.6rem 'Varela Round', sans-serif;
+  }
+
+  #root {
+    width: 100vw;
   }
 `;

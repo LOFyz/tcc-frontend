@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import SearchBar from '../components/SearchBar';
 import Post from '../components/Post';
-import {
-  Home,
-  Message,
-  Notifications,
-  NotificationsActive,
-} from '@material-ui/icons';
+import { Home, Message } from '@material-ui/icons';
 
 const Dashboard: React.FC = () => {
-  const [notification, setNotification] = useState(false);
   return (
     <Container>
       <Header>
@@ -33,9 +27,13 @@ const Dashboard: React.FC = () => {
         </Post>
       </Body>
       <Navigation>
-        <Message />
-        <Home />
-        {notification ? <NotificationsActive /> : <Notifications />}
+        <button>
+          <Message />
+        </button>
+        <button>
+          <Home />
+        </button>
+        <NotificationButton />
       </Navigation>
     </Container>
   );
@@ -44,6 +42,7 @@ const Dashboard: React.FC = () => {
 export default Dashboard;
 
 import styled from 'styled-components';
+import NotificationButton from '../components/NotificationButton';
 
 const Header = styled.div`
   width: 100%;

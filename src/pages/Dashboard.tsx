@@ -12,7 +12,25 @@ const Dashboard: React.FC = () => {
       </Header>
       <Body>
         <SearchBar />
-        <Post />
+        <Post
+          username="Mauricio"
+          profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+          userProfile=""
+          image="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+          laudantium quas eaque debitis voluptatibus veritatis quaerat
+          exercitationem nesciunt eos corrupti!
+        </Post>
+        <Post
+          username="Mauricio"
+          profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+          userProfile=""
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+          laudantium quas eaque debitis voluptatibus veritatis quaerat
+          exercitationem nesciunt eos corrupti!
+        </Post>
       </Body>
     </>
   );

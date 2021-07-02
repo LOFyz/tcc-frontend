@@ -26,6 +26,7 @@
   ],
   "rules": {
     "prettier/prettier": "error",
+    "react/prop-types": "off",
     "require-jsdoc": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

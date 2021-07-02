@@ -1,6 +1,28 @@
+import React from 'react';
+
+import SearchBar from '../components/SearchBar';
+import Post from '../components/Post';
+
+const Dashboard: React.FC = () => {
+  return (
+    <>
+      <Header>
+        <h1>Dashboard</h1>
+        <img src="" alt="" />
+      </Header>
+      <Body>
+        <SearchBar />
+        <Post />
+      </Body>
+    </>
+  );
+};
+
+export default Dashboard;
+
 import styled from 'styled-components';
 
-export const Header = styled.div`
+const Header = styled.div`
   width: 100%;
   height: 9.2rem;
   padding: 0 1.5rem;
@@ -30,7 +52,7 @@ export const Header = styled.div`
     height: 7rem;
   }
 `;
-export const Body = styled.div`
+const Body = styled.div`
   width: 100%;
   padding: 0 1.5rem;
   display: flex;
@@ -38,4 +60,4 @@ export const Body = styled.div`
   align-items: center;
 `;
 
-export const Navigation = styled.div``;
+// const Navigation = styled.div``;

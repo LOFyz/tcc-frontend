@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import SearchBar from '../components/SearchBar';
 import Post from '../components/Post';
+import {
+  Home,
+  Message,
+  Notifications,
+  NotificationsActive,
+} from '@material-ui/icons';
 
 const Dashboard: React.FC = () => {
+  const [notification, setNotification] = useState(false);
   return (
-    <>
+    <Container>
       <Header>
         <h1>Dashboard</h1>
         <img src="" alt="" />
@@ -24,18 +31,13 @@ const Dashboard: React.FC = () => {
           laudantium quas eaque debitis voluptatibus veritatis quaerat
           exercitationem nesciunt eos corrupti!
         </Post>
-        <br />
-        <Post
-          username="Mauricio"
-          profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
-          userProfile=""
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-          laudantium quas eaque debitis voluptatibus veritatis quaerat
-          exercitationem nesciunt eos corrupti!
-        </Post>
       </Body>
-    </>
+      <Navigation>
+        <Message />
+        <Home />
+        {notification ? <NotificationsActive /> : <Notifications />}
+      </Navigation>
+    </Container>
   );
 };
 
@@ -82,4 +84,30 @@ const Body = styled.div`
   align-items: center;
 `;
 
-// const Navigation = styled.div``;
+const Navigation = styled.div`
+  background: #66bb6a;
+  width: 100%;
+  height: 7.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  svg {
+    width: 3rem;
+    height: 3rem;
+    color: #fff;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

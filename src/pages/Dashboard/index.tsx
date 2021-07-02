@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { Body, Header } from './styles';
-import SearchBar from '../../components/SearchBar/index';
+import SearchBar from '../../components/SearchBar';
+import Post from '../../components/Post';
 
 const Dashboard: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const Dashboard: React.FC = () => {
       </Header>
       <Body>
         <SearchBar />
+        <Post />
       </Body>
     </>
   );

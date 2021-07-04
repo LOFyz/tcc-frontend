@@ -43,6 +43,18 @@ const Dashboard: React.FC = () => {
                 exercitationem nesciunt eos corrupti!
               </Post>
             </li>
+            <li>
+              <Post
+                username="Mauricio"
+                profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+                userProfile=""
+                image="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+                laudantium quas eaque debitis voluptatibus veritatis quaerat
+                exercitationem nesciunt eos corrupti!
+              </Post>
+            </li>
           </ul>
         </Body>
         <Navigation>
@@ -115,11 +127,32 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
+
+  .searchBar {
+    ul > * {
+      display: none;
+    }
+  }
+
+  li + li {
+    margin: 1rem 0;
+  }
 
   @media (orientation: landscape) {
     flex-direction: row-reverse;
     align-items: flex-start;
     justify-content: space-around;
+
+    .searchBar {
+      ul > * {
+        display: flex;
+        flex-direction: column;
+      }
+      li {
+        margin: 1rem 0;
+      }
+    }
   }
 `;
 

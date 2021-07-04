@@ -11,30 +11,52 @@ const Dashboard: React.FC = () => {
         <h1>Dashboard</h1>
         <img src="" alt="" />
       </Header>
-      <Body>
-        <br />
-        <SearchBar />
-        <br />
-        <Post
-          username="Mauricio"
-          profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
-          userProfile=""
-          image="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-          laudantium quas eaque debitis voluptatibus veritatis quaerat
-          exercitationem nesciunt eos corrupti!
-        </Post>
-      </Body>
-      <Navigation>
-        <button>
-          <Message />
-        </button>
-        <button>
-          <Home />
-        </button>
-        <NotificationButton />
-      </Navigation>
+      <div className="container">
+        <Body>
+          <div className="searchBar">
+            <SearchBar />
+            <ul>
+              <li>
+                <Post
+                  username="Mauricio"
+                  profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+                  userProfile=""
+                  image="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+                  laudantium quas eaque debitis voluptatibus veritatis quaerat
+                  exercitationem nesciunt eos corrupti!
+                </Post>
+              </li>
+            </ul>
+          </div>
+          <ul>
+            <li>
+              <Post
+                username="Mauricio"
+                profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+                userProfile=""
+                image="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+                laudantium quas eaque debitis voluptatibus veritatis quaerat
+                exercitationem nesciunt eos corrupti!
+              </Post>
+            </li>
+          </ul>
+        </Body>
+        <Navigation>
+          <button>
+            <Message />
+            <a href="">Message</a>
+          </button>
+          <button>
+            <Home />
+            <a href="">Home</a>
+          </button>
+          <NotificationButton />
+        </Navigation>
+      </div>
     </Container>
   );
 };
@@ -74,13 +96,30 @@ const Header = styled.div`
     width: 7rem;
     height: 7rem;
   }
+
+  @media (orientation: landscape) {
+    height: 10.2rem;
+    background: #66bb6a;
+    box-shadow: 0px 0px 2rem rgba(0, 0, 0, 0.25);
+    flex-direction: row-reverse;
+
+    h1 {
+      color: #fff;
+    }
+  }
 `;
 const Body = styled.div`
   width: 100%;
-  padding: 0 1.5rem;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (orientation: landscape) {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
 `;
 
 const Navigation = styled.div`
@@ -91,8 +130,6 @@ const Navigation = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  position: absolute;
-  bottom: 0;
 
   button {
     background: none;
@@ -104,9 +141,58 @@ const Navigation = styled.div`
     height: 3rem;
     color: #fff;
   }
+
+  a {
+    display: none;
+  }
+
+  @media (orientation: landscape) {
+    width: 33.7rem;
+    height: 92.2rem;
+    background: rgba(102, 187, 106, 0.84);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+    }
+
+    a {
+      display: initial;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 2.3rem;
+      text-decoration: none;
+      margin-left: 0.5rem;
+
+      color: #ffffff;
+    }
+    button {
+      width: 100%;
+      height: 7.368rem;
+      background: rgba(0, 0, 0, 0.06);
+      box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 2.5rem;
+      margin-top: 0.4rem;
+    }
+  }
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    justify-content: center;
+  }
 `;

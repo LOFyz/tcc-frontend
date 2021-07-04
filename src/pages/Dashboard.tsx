@@ -165,9 +165,13 @@ const Body = styled.div`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
+  width: 100%;
 
   .container {
     display: flex;
+    flex: 1;
+    width: 100%;
     flex-direction: row-reverse;
     align-items: flex-start;
     justify-content: center;

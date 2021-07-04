@@ -35,12 +35,13 @@ export const Navigation = styled.div`
 
   @media (orientation: landscape) {
     width: 33.7rem;
-    height: 100vh;
+    height: auto;
     background: rgba(102, 187, 106, 0.84);
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     position: initial;
+    scroll-behavior: unset;
 
     svg {
       width: 4rem;

@@ -110,7 +110,6 @@ const Body = styled.div`
     label {
       font-size: ${(p: { image?: string }) => (p.image ? '1.5rem' : '2.3rem')};
       max-width: 47.8rem;
-      max-height: 7.4rem;
 
       align-self: center;
       justify-self: center;

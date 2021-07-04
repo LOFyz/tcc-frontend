@@ -18,6 +18,7 @@ const Dashboard: React.FC = () => {
             <ul>
               <li>
                 <Post
+                  className="post"
                   username="Mauricio"
                   profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
                   userProfile=""
@@ -33,6 +34,7 @@ const Dashboard: React.FC = () => {
           <ul>
             <li>
               <Post
+                className="post"
                 username="Mauricio"
                 profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
                 userProfile=""
@@ -45,6 +47,7 @@ const Dashboard: React.FC = () => {
             </li>
             <li>
               <Post
+                className="post"
                 username="Mauricio"
                 profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
                 userProfile=""
@@ -145,6 +148,9 @@ const Body = styled.div`
     justify-content: space-around;
 
     .searchBar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       ul > * {
         display: flex;
         flex-direction: column;

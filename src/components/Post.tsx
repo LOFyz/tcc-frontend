@@ -76,6 +76,8 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  align-self: center;
 
   width: 36.2rem;
   min-height: 5.6rem;

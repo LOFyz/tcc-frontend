@@ -8,6 +8,7 @@ const NotificationButton: React.FC = () => {
   return (
     <button>
       {notification ? <NotificationsActive /> : <Notifications />}
+      <a href="">Notification</a>
     </button>
   );
 };

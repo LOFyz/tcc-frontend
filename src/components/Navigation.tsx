@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
 
-const components: React.FC = () => {
-  return <Navigation />;
+const components: React.FC = ({ children }) => {
+  return <Navigation>{children}</Navigation>;
 };
 
 export default components;

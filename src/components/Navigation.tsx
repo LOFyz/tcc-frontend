@@ -35,7 +35,7 @@ export const Navigation = styled.div`
 
   @media (orientation: landscape) {
     width: 33.7rem;
-    height: 92.2rem;
+    height: 100vh;
     background: rgba(102, 187, 106, 0.84);
     flex-direction: column;
     align-items: flex-start;

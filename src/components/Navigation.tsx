@@ -15,6 +15,8 @@ export const Navigation = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  position: fixed;
+  bottom: 0;
 
   button {
     background: none;
@@ -38,6 +40,7 @@ export const Navigation = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    position: initial;
 
     svg {
       width: 4rem;

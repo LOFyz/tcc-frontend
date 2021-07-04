@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
 
 import { Search } from '@material-ui/icons';
 
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<HTMLAttributes<HTMLDivElement>> = ({ ...rest }) => {
   return (
-    <Container>
+    <Container {...rest}>
       <Search />
       <StyledTextInput placeholder="Search" />
     </Container>

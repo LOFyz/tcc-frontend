@@ -29,7 +29,8 @@ export const Navigation = styled.div`
     color: #fff;
   }
 
-  a {
+  a,
+  label {
     display: none;
   }
 
@@ -48,7 +49,8 @@ export const Navigation = styled.div`
       height: 4rem;
     }
 
-    a {
+    a,
+    label {
       display: initial;
       font-family: Roboto;
       font-style: normal;

@@ -30,7 +30,7 @@ export const Navigation = styled.div`
   }
 
   a,
-  label {
+  .title {
     display: none;
   }
 
@@ -50,7 +50,7 @@ export const Navigation = styled.div`
     }
 
     a,
-    label {
+    .title {
       display: initial;
       font-family: Roboto;
       font-style: normal;

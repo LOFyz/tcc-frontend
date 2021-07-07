@@ -1,14 +1,15 @@
 import React from 'react';
 import { ArrowBackIos } from '@material-ui/icons';
 import { Container, SignUpContainer, Logo, Form } from './SignUp';
+import { Link } from 'react-router-dom';
 
 const SignUp: React.FC = () => {
   return (
     <Container>
       <SignUpContainer>
-        <a href="" className="back">
+        <Link to="" className="back">
           <ArrowBackIos />
-        </a>
+        </Link>
 
         <Logo>
           <img src="" alt="" />
@@ -17,7 +18,7 @@ const SignUp: React.FC = () => {
           <input type="text" placeholder="Email" />
           <input type="text" placeholder="Password" />
           <input type="button" value="Submit" />
-          <a href="">{'Doesnt have an account?'}</a>
+          <Link to="/signup">{'Doesnt have an account?'}</Link>
         </Form>
       </SignUpContainer>
     </Container>

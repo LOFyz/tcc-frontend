@@ -10,8 +10,9 @@ const Dashboard: React.FC = () => {
     <Container>
       <Header>
         <h1>Dashboard</h1>
-        <Link to={`profile/`}>
-          {/* Adicionar id quando conectar ao banco */}
+        <Link to={`/profile/1`}>
+          {/* Adicionar id quando conectar ao banco, com um operador ternario,
+          caso não tenha usuario logado mandar pra tela de login  */}
           <img src="" alt="" />
         </Link>
       </Header>

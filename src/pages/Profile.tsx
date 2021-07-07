@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Navigation } from '../components/Navigation';
 import NotificationButton from '../components/NotificationButton';
 import Post from '../components/Post';
+import { Link } from 'react-router-dom';
 
 const Profile: React.FC = () => {
   return (
@@ -67,12 +68,16 @@ const Profile: React.FC = () => {
       </div>
       <Navigation>
         <button>
-          <Message />
-          <a href="">Message</a>
+          <Link to="">
+            <Message />
+          </Link>
+          <Link to="">Message</Link>
         </button>
         <button>
-          <Home />
-          <a href="">Home</a>
+          <Link to="/">
+            <Home />
+          </Link>
+          <Link to="/">Home</Link>
         </button>
         <NotificationButton />
       </Navigation>

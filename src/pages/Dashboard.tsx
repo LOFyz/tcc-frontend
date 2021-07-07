@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/SearchBar';
 import Post from '../components/Post';
@@ -9,7 +10,10 @@ const Dashboard: React.FC = () => {
     <Container>
       <Header>
         <h1>Dashboard</h1>
-        <img src="" alt="" />
+        <Link to={`profile/`}>
+          {/* Adicionar id quando conectar ao banco */}
+          <img src="" alt="" />
+        </Link>
       </Header>
       <div className="container">
         <Body>
@@ -63,11 +67,11 @@ const Dashboard: React.FC = () => {
         <Navigation>
           <button>
             <Message />
-            <a href="">Message</a>
+            <Link to="/messages">Message</Link>
           </button>
           <button>
             <Home />
-            <a href="">Home</a>
+            <Link to="/">Home</Link>
           </button>
           <NotificationButton />
         </Navigation>

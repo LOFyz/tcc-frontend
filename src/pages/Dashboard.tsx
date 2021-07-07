@@ -67,12 +67,20 @@ const Dashboard: React.FC = () => {
         </Body>
         <Navigation>
           <button>
-            <Message />
-            <Link to="/messages">Message</Link>
+            <Link to="/messages">
+              <Message />
+            </Link>
+            <Link to="/messages" className="title">
+              Message
+            </Link>
           </button>
           <button>
-            <Home />
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <Home />
+            </Link>
+            <Link to="/" className="title">
+              Home
+            </Link>
           </button>
           <NotificationButton />
         </Navigation>

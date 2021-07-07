@@ -71,13 +71,17 @@ const Profile: React.FC = () => {
           <Link to="">
             <Message />
           </Link>
-          <Link to="">Message</Link>
+          <Link to="" className="title">
+            Message
+          </Link>
         </button>
         <button>
           <Link to="/">
             <Home />
           </Link>
-          <Link to="/">Home</Link>
+          <Link to="/" className="title">
+            Home
+          </Link>
         </button>
         <NotificationButton />
       </Navigation>

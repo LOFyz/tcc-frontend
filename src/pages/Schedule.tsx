@@ -1,13 +1,14 @@
 import { ArrowBackIos } from '@material-ui/icons';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Schedule: React.FC = () => {
   return (
     <Container>
-      <a href="" className="back">
+      <Link to="/" className="back">
         <ArrowBackIos />
-      </a>
+      </Link>
       <ul>
         <li>
           <h1>24/69 Fazer algo</h1>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { ChatBubble, Share } from '@material-ui/icons';
 import { useState } from 'react';
 import { HTMLAttributes } from 'react';
@@ -23,8 +24,10 @@ const Post: React.FC<PostProps> = ({
   return (
     <Container {...rest}>
       <Postbar>
-        <img src={profilePhoto} alt="" />
-        <a href={userProfile}>{username}</a>
+        <Link to={userProfile} className="link">
+          <img src={profilePhoto} alt="" />
+          <label>{username}</label>
+        </Link>
       </Postbar>
       <Body image={image}>
         {image && <img src={image} />}
@@ -51,6 +54,14 @@ const Postbar = styled.div`
   align-items: center;
   margin-left: 0.5rem;
 
+  .link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 0.5rem;
+    text-decoration: none;
+  }
+
   img {
     width: 3.2rem;
     height: 3.2rem;
@@ -58,14 +69,13 @@ const Postbar = styled.div`
     background: #c4c4c4;
   }
 
-  a {
+  label {
     width: 10.4rem;
     height: 1.4rem;
     font-family: 'Varela Round';
     font-style: normal;
     font-weight: normal;
-    font-size: 1.2rem;
-    line-height: 1.4rem;
+    font-size: 1.4rem;
     color: #338a3e;
     padding-left: 0.5rem;
     text-decoration: none;

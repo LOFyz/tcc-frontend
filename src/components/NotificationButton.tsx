@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const NotificationButton: React.FC = () => {
-  const [notification, setNotification] = useState(true);
+  const [notification] = useState(true);
   const [showNotification, setShowNotification] = useState(false);
   // const [notification, setNotification] = useState(false);
 

@@ -22,7 +22,7 @@ const SignUp: React.FC = () => {
           <input type="text" placeholder="Email" />
           <input type="text" placeholder="Password" />
           <input type="button" value="Submit" />
-          <Link to="">{'Already have an account?'}</Link>
+          <Link to="/signin">{'Already have an account?'}</Link>
         </Form>
       </SignUpContainer>
     </Container>

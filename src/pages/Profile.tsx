@@ -9,25 +9,6 @@ import { Link } from 'react-router-dom';
 const Profile: React.FC = () => {
   return (
     <Container>
-      <Navigation>
-        <button>
-          <Link to="">
-            <Message />
-          </Link>
-          <Link to="" className="title">
-            Message
-          </Link>
-        </button>
-        <button>
-          <Link to="/">
-            <Home />
-          </Link>
-          <Link to="/" className="title">
-            Home
-          </Link>
-        </button>
-        <NotificationButton />
-      </Navigation>
       <div className="subContainer">
         <Header>
           <img src="" alt="" className="banner" />
@@ -90,6 +71,25 @@ const Profile: React.FC = () => {
           </ul>
         </Body>
       </div>
+      <Navigation>
+        <button>
+          <Link to="">
+            <Message />
+          </Link>
+          <Link to="" className="title">
+            Message
+          </Link>
+        </button>
+        <button>
+          <Link to="/">
+            <Home />
+          </Link>
+          <Link to="/" className="title">
+            Home
+          </Link>
+        </button>
+        <NotificationButton />
+      </Navigation>
     </Container>
   );
 };
@@ -107,7 +107,7 @@ const Container = styled.div`
   }
 
   @media (orientation: landscape) {
-    flex-direction: row;
+    flex-direction: row-reverse;
     width: 100%;
     justify-content: flex-end;
   }

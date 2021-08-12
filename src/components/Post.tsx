@@ -10,6 +10,7 @@ export interface PostProps extends HTMLAttributes<HTMLDivElement> {
   username: string;
   userProfile: string;
   profilePhoto: string;
+  size?: number;
 }
 
 const Post: React.FC<PostProps> = ({
@@ -52,32 +53,48 @@ const Postbar = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 0.5rem;
+  margin-left: ${(e: { size?: number }) => {
+    return e.size ? 0.5 * e.size : 0.5;
+  }}rem;
 
   .link {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-left: 0.5rem;
+    margin-left: ${(e: { size?: number }) => {
+      return e.size ? 0.5 * e.size : 0.5;
+    }}rem;
     text-decoration: none;
   }
 
   img {
-    width: 3.2rem;
-    height: 3.2rem;
+    width: ${(e: { size?: number }) => {
+      return e.size ? 3.2 * e.size : 3.2;
+    }}rem;
+    height: ${(e: { size?: number }) => {
+      return e.size ? 3.2 * e.size : 3.2;
+    }}rem;
     border-radius: 50%;
     background: #c4c4c4;
   }
 
   label {
-    width: 10.4rem;
-    height: 1.4rem;
+    width: ${(e: { size?: number }) => {
+      return e.size ? 10.4 * e.size : 10.4;
+    }}rem;
+    height: ${(e: { size?: number }) => {
+      return e.size ? 1.4 * e.size : 1.4;
+    }}rem;
     font-family: 'Varela Round';
     font-style: normal;
     font-weight: normal;
-    font-size: 1.4rem;
+    font-size: ${(e: { size?: number }) => {
+      return e.size ? 1.4 * e.size : 1.4;
+    }}rem;
     color: #338a3e;
-    padding-left: 0.5rem;
+    padding-left: ${(e: { size?: number }) => {
+      return e.size ? 0.5 * e.size : 0.5;
+    }}rem;
     text-decoration: none;
   }
 `;
@@ -89,37 +106,62 @@ const Body = styled.div`
   justify-content: center;
   align-self: center;
 
-  width: 36.2rem;
-  min-height: 5.6rem;
-  margin: 0.5rem 0;
+  width: 100%;
+  min-height: ${(e: { size?: number; image?: string }) => {
+    return e.size ? 5.6 * e.size : 5.6;
+  }}rem;
+  margin: ${(e: { size?: number; image?: string }) => {
+      return e.size ? 0.5 * e.size : 0.5;
+    }}rem
+    0;
 
   label {
     font-family: Roboto;
+    width: 100%;
+    padding: 0
+      ${(e: { size?: number; image?: string }) => {
+        return e.size ? 1 * e.size : 1;
+      }}rem;
 
-    font-size: ${(p: { image?: string }) => (p.image ? '1.2rem' : '1.7rem')};
+    font-size: ${(p: { size?: number; image?: string }) =>
+      p.image ? (p.size ? 1.2 * p.size : 1.2) : p.size ? 1.7 * p.size : 1.7}rem;
 
     color: #000000;
   }
 
   img {
     width: 99%;
-    height: 16.3rem;
+    height: ${(e: { size?: number; image?: string }) => {
+      return e.size ? 16.3 * e.size : 16.3;
+    }}rem;
     background: #c4c4c4;
     object-fit: cover;
-    margin: 0.5rem 0;
+    margin: ${(e: { size?: number; image?: string }) => {
+        return e.size ? 0.5 * e.size : 0.5;
+      }}rem
+      0;
     object-position: top;
   }
 
   @media (orientation: landscape) {
-    width: 49.1rem;
+    width: 100%;
 
     img {
-      height: 21.535rem;
+      height: ${(e: { size?: number; image?: string }) => {
+        return e.size ? 21.535 * e.size : 21.535;
+      }}rem;
     }
 
     label {
-      font-size: ${(p: { image?: string }) => (p.image ? '1.5rem' : '2.3rem')};
-      max-width: 47.8rem;
+      font-size: ${(p: { size?: number; image?: string }) =>
+        p.image
+          ? p.size
+            ? 1.5 * p.size
+            : 1.5
+          : p.size
+          ? 2.3 * p.size
+          : 2.3}rem;
+      width: 100%;
 
       align-self: center;
       justify-self: center;
@@ -130,30 +172,47 @@ const Body = styled.div`
 const Options = styled.div`
   display: flex;
   flex-direction: row;
-  width: 8.4rem;
+  width: ${(e: { size?: number; image?: string }) => {
+    return e.size ? 8.4 * e.size : 8.4;
+  }}rem;
   justify-content: space-between;
-  margin-left: 0.5rem;
+  margin-left: ${(e: { size?: number; image?: string }) => {
+    return e.size ? 0.5 * e.size : 0.5;
+  }}rem;
 
   @media (orientation: landscape) {
-    width: 11.147rem;
-    height: 3.503rem;
+    width: ${(e: { size?: number; image?: string }) => {
+      return e.size ? 11.147 * e.size : 11.147;
+    }}rem;
+    height: ${(e: { size?: number; image?: string }) => {
+      return e.size ? 3.503 * e.size : 3.503;
+    }}rem;
   }
 `;
 
 const Like = styled.button`
-  width: 2.2rem;
-  height: 2.2rem;
+  width: ${(e: { size?: number; clicked: boolean }) => {
+    return e.size ? 2.2 * e.size : 2.2;
+  }}rem;
+  height: ${(e: { size?: number; clicked: boolean }) => {
+    return e.size ? 2.2 * e.size : 2.2;
+  }}rem;
 
-  background: ${(p: { clicked: boolean }) =>
+  background: ${(p: { size?: number; clicked: boolean }) =>
     p.clicked ? '#d32f2f' : '#c4c4c4'};
-  border: 0.1rem solid rgba(0, 0, 0, 0.05);
+  border: ${(e: { size?: number; clicked: boolean }) => {
+      return e.size ? 0.1 * e.size : 0.1;
+    }}rem
+    solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
   border-radius: 50%;
 
-  @media (orientation: landscape) {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
+  width: ${(e: { size?: number; clicked: boolean }) => {
+    return e.size ? 3.5 * e.size : 3.5;
+  }}rem;
+  height: ${(e: { size?: number; clicked: boolean }) => {
+    return e.size ? 3.5 * e.size : 3.5;
+  }}rem;
 `;
 
 const ShareButton = styled.button`
@@ -161,15 +220,23 @@ const ShareButton = styled.button`
   border: none;
 
   svg {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: ${(e: { size?: number }) => {
+      return e.size ? 2.4 * e.size : 2.4;
+    }}rem;
+    height: ${(e: { size?: number }) => {
+      return e.size ? 2.4 * e.size : 2.4;
+    }}rem;
     color: #338a3e;
   }
 
   @media (orientation: landscape) {
     svg {
-      width: 3.185rem;
-      height: 3.185rem;
+      width: ${(e: { size?: number }) => {
+        return e.size ? 3.185 * e.size : 3.185;
+      }}rem;
+      height: ${(e: { size?: number }) => {
+        return e.size ? 3.185 * e.size : 3.185;
+      }}rem;
     }
   }
 `;
@@ -179,28 +246,46 @@ const CommentButton = styled.button`
   border: none;
 
   svg {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: ${(e: { size?: number }) => {
+      return e.size ? 2.4 * e.size : 2.4;
+    }}rem;
+    height: ${(e: { size?: number }) => {
+      return e.size ? 2.4 * e.size : 2.4;
+    }}rem;
     color: #338a3e;
   }
   @media (orientation: landscape) {
     svg {
-      width: 3.185rem;
-      height: 3.185rem;
+      width: ${(e: { size?: number }) => {
+        return e.size ? 3.185 * e.size : 3.185;
+      }}rem;
+      height: ${(e: { size?: number }) => {
+        return e.size ? 3.185 * e.size : 3.185;
+      }}rem;
     }
   }
 `;
 
 const Container = styled.div`
-  width: 37.2rem;
+  width: ${(e: { size?: number }) => {
+    return e.size ? 37.2 * e.size : 37.2;
+  }}rem;
   background: #ffffff;
-  border: 0.1rem solid rgba(0, 0, 0, 0.15);
+  border: ${(e: { size?: number }) => {
+      return e.size ? 0.1 * e.size : 0.1;
+    }}rem
+    solid rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 0.5rem 0;
+  padding: ${(e: { size?: number }) => {
+      return e.size ? 0.5 * e.size : 0.5;
+    }}rem
+    0;
 
   @media (orientation: landscape) {
-    width: 49.1rem;
+    width: ${(e: { size?: number }) => {
+      return e.size ? 49.1 * e.size : 49.1;
+    }}rem;
   }
 `;

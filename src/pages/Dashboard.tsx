@@ -43,7 +43,6 @@ const Dashboard: React.FC = () => {
                 username="Mauricio"
                 profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
                 userProfile="/profile/1"
-                image="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
               >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
                 laudantium quas eaque debitis voluptatibus veritatis quaerat

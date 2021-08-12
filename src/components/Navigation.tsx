@@ -17,6 +17,7 @@ export const Navigation = styled.div`
   align-items: center;
   position: fixed;
   bottom: 0;
+  left: 0;
 
   button {
     background: none;

@@ -9,6 +9,25 @@ import { Link } from 'react-router-dom';
 const Profile: React.FC = () => {
   return (
     <Container>
+      <Navigation>
+        <button>
+          <Link to="">
+            <Message />
+          </Link>
+          <Link to="" className="title">
+            Message
+          </Link>
+        </button>
+        <button>
+          <Link to="/">
+            <Home />
+          </Link>
+          <Link to="/" className="title">
+            Home
+          </Link>
+        </button>
+        <NotificationButton />
+      </Navigation>
       <div className="subContainer">
         <Header>
           <img src="" alt="" className="banner" />
@@ -29,10 +48,15 @@ const Profile: React.FC = () => {
             dolor tempora beatae ipsam.
           </label>
         </Header>
-        <Body>
+        <Body style={{ position: 'relative', bottom: '10rem' }}>
           <ul>
             <li>
-              <Post profilePhoto="" userProfile="" username="">
+              <Post
+                size={1.3}
+                profilePhoto=""
+                userProfile=""
+                username="YAAAAAAAY"
+              >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
                 facilis earum aliquam porro quod voluptate at similique,
                 dolorem, perspiciatis quaerat distinctio eligendi atque.
@@ -40,7 +64,7 @@ const Profile: React.FC = () => {
               </Post>
             </li>
             <li>
-              <Post profilePhoto="" userProfile="" username="">
+              <Post size={1.3} profilePhoto="" userProfile="" username="">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
                 facilis earum aliquam porro quod voluptate at similique,
                 dolorem, perspiciatis quaerat distinctio eligendi atque.
@@ -48,7 +72,7 @@ const Profile: React.FC = () => {
               </Post>
             </li>
             <li>
-              <Post profilePhoto="" userProfile="" username="">
+              <Post size={1.3} profilePhoto="" userProfile="" username="">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
                 facilis earum aliquam porro quod voluptate at similique,
                 dolorem, perspiciatis quaerat distinctio eligendi atque.
@@ -56,7 +80,7 @@ const Profile: React.FC = () => {
               </Post>
             </li>
             <li>
-              <Post profilePhoto="" userProfile="" username="">
+              <Post size={1.3} profilePhoto="" userProfile="" username="">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
                 facilis earum aliquam porro quod voluptate at similique,
                 dolorem, perspiciatis quaerat distinctio eligendi atque.
@@ -66,25 +90,6 @@ const Profile: React.FC = () => {
           </ul>
         </Body>
       </div>
-      <Navigation>
-        <button>
-          <Link to="">
-            <Message />
-          </Link>
-          <Link to="" className="title">
-            Message
-          </Link>
-        </button>
-        <button>
-          <Link to="/">
-            <Home />
-          </Link>
-          <Link to="/" className="title">
-            Home
-          </Link>
-        </button>
-        <NotificationButton />
-      </Navigation>
     </Container>
   );
 };
@@ -97,15 +102,14 @@ const Container = styled.div`
   background: #fff;
   flex: 1;
 
+  .subContainer {
+    width: 100%;
+  }
+
   @media (orientation: landscape) {
-    flex-direction: row-reverse;
+    flex-direction: row;
     width: 100%;
     justify-content: flex-end;
-
-    .subContainer {
-      width: 100%;
-      flex: 1;
-    }
   }
 `;
 
@@ -115,6 +119,9 @@ const Header = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 10rem 2rem 0 2rem;
+  width: 100%;
+  position: relative;
+  bottom: 10rem;
 
   .upper {
     display: flex;
@@ -188,9 +195,12 @@ const Header = styled.div`
   }
 
   @media (orientation: landscape) {
-    padding: 23rem 0 0 0;
+    padding: 0;
 
     .description {
+      position: relative;
+      bottom: 10rem;
+
       font-size: 2.2rem;
       padding: 1.159rem;
       width: 86.261rem;
@@ -211,7 +221,8 @@ const Header = styled.div`
 
     .banner {
       height: 36rem;
-      width: 110.3rem;
+      width: 100%;
+      position: relative;
       left: initial;
       right: 0;
     }
@@ -222,7 +233,9 @@ const Header = styled.div`
     }
 
     .upper {
+      position: relative;
       padding: 0 5rem;
+      bottom: 10rem;
 
       svg {
         width: 5.565rem;

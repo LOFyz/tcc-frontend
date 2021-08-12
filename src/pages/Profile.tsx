@@ -144,7 +144,7 @@ const Header = styled.div`
 
   .banner {
     width: 100%;
-    height: 15.6rem;
+    height: 28.6rem;
     position: absolute;
     top: 0;
     left: 0;

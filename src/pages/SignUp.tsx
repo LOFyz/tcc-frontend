@@ -1,9 +1,49 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ArrowBackIos } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+
+interface IFormData {
+  name: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
+const initialValues: IFormData = {
+  name: '',
+  lastName: '',
+  email: '',
+  password: '',
+};
+
+const formSchema = Yup.object().shape({
+  name: Yup.string().required('Campo Obrigatório.'),
+  lastName: Yup.string().required('Campo Obrigatório'),
+  email: Yup.string().email('E-mail inválido').required('Campo Obrigatório.'),
+  password: Yup.string().required('Campo Obrigatório'),
+});
 
 const SignUp: React.FC = () => {
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: formSchema,
+    onSubmit: async (values) => {
+      return alert(values);
+    },
+  });
+
+  useEffect(() => {
+    if (formik.errors.email) {
+      alert(formik.errors.email);
+    }
+    if (formik.errors.password) {
+      alert(formik.errors.password);
+    }
+  }, [formik.errors.email, formik.errors.password]);
+
   return (
     <Container>
       <SignUpContainer>
@@ -89,7 +129,7 @@ export const Logo = styled.div`
   }
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,7 +148,8 @@ export const Form = styled.div`
     font-size: 1.2rem;
     font-family: Roboto;
 
-    &[type='button'] {
+    &[type='button'],
+    &[type='submit'] {
       background: #66bb6a;
       text-align: center;
       color: #ffffff;

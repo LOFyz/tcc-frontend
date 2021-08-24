@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/SearchBar';
@@ -6,6 +6,11 @@ import Post from '../components/Post';
 import { Add, Home, Message } from '@material-ui/icons';
 
 const Dashboard: React.FC = () => {
+  const [openPostCreation, setOpenPostCreation] = useState(false);
+  function handleOpenPostCreation() {
+    setOpenPostCreation(!openPostCreation);
+  }
+
   return (
     <Container>
       <Header>
@@ -81,13 +86,16 @@ const Dashboard: React.FC = () => {
               Home
             </Link>
           </button>
-          <button>
+          <button onClick={handleOpenPostCreation}>
             <Add />
             <span className="title">Post</span>
           </button>
           <NotificationButton />
         </Navigation>
       </div>
+      {openPostCreation && (
+        <PostCreationModal onClose={handleOpenPostCreation} />
+      )}
     </Container>
   );
 };
@@ -97,6 +105,7 @@ export default Dashboard;
 import styled from 'styled-components';
 import NotificationButton from '../components/NotificationButton';
 import Navigation from '../components/Navigation';
+import PostCreationModal from '../components/PostCreationModal';
 
 const Header = styled.div`
   width: 100%;

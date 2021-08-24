@@ -25,6 +25,10 @@ export default createGlobalStyle`
     font: 1.6rem 'Varela Round', sans-serif;
   }
 
+  button, button>* {
+    cursor: pointer;
+  }
+
   #root {
     width: 100vw;
   }

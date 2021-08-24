@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/SearchBar';
 import Post from '../components/Post';
-import { Home, Message } from '@material-ui/icons';
+import { Add, Home, Message } from '@material-ui/icons';
 
 const Dashboard: React.FC = () => {
   return (
@@ -42,7 +42,7 @@ const Dashboard: React.FC = () => {
                 className="post"
                 username="Mauricio"
                 profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
-                userProfile="/profile/1"
+                userProfile="1"
               >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
                 laudantium quas eaque debitis voluptatibus veritatis quaerat
@@ -54,7 +54,7 @@ const Dashboard: React.FC = () => {
                 className="post"
                 username="Mauricio"
                 profilePhoto="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
-                userProfile=""
+                userProfile="1"
                 image="https://upload.wikimedia.org/wikipedia/commons/5/57/QT_-_Johann_Moritz_1937.PNG"
               >
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
@@ -80,6 +80,10 @@ const Dashboard: React.FC = () => {
             <Link to="/" className="title">
               Home
             </Link>
+          </button>
+          <button>
+            <Add />
+            <span className="title">Post</span>
           </button>
           <NotificationButton />
         </Navigation>

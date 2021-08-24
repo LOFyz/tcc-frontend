@@ -25,9 +25,9 @@ const Post: React.FC<PostProps> = ({
   return (
     <Container {...rest}>
       <Postbar>
-        <Link to={userProfile} className="link">
+        <Link to={'/profile/' + userProfile} className="link">
           <img src={profilePhoto} alt="" />
-          <label>{username}</label>
+          <span>{username}</span>
         </Link>
       </Postbar>
       <Body image={image}>
@@ -78,7 +78,7 @@ const Postbar = styled.div`
     background: #c4c4c4;
   }
 
-  label {
+  span {
     width: ${(e: { size?: number }) => {
       return e.size ? 10.4 * e.size : 10.4;
     }}rem;
@@ -96,6 +96,7 @@ const Postbar = styled.div`
       return e.size ? 0.5 * e.size : 0.5;
     }}rem;
     text-decoration: none;
+    cursor: pointer;
   }
 `;
 

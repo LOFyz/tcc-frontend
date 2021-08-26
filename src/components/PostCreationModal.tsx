@@ -24,7 +24,7 @@ interface modal {
 
 const withStyles = makeStyles((theme: Theme) => ({
   backButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   title: {
     marginTop: theme.spacing(2),
@@ -42,14 +42,14 @@ const withStyles = makeStyles((theme: Theme) => ({
   button: {
     margin: theme.spacing(1),
     marginLeft: 'auto',
-    color: theme.palette.text.primary,
+    color: theme.palette.text.secondary,
   },
   textField: { margin: theme.spacing(1) },
   label: { color: theme.palette.text.primary },
 }));
 
 interface IFormData {
-  image: string;
+  image?: string;
   description: string;
 }
 
@@ -59,7 +59,7 @@ const initialValues: IFormData = {
 };
 
 const formSchema = Yup.object().shape({
-  image: Yup.string().required('Campo Obrigatório.'),
+  image: Yup.string(),
   description: Yup.string().required('Campo Obrigatório'),
 });
 
@@ -91,7 +91,7 @@ const PostCreationModal: React.FC<modal> = ({ open, handleModal }) => {
             <IconButton onClick={handleModal} className={classes.backButton}>
               <ArrowBack />
             </IconButton>
-            <Typography variant="h4">Profile creation</Typography>
+            <Typography variant="h5">Profile creation</Typography>
           </div>
         </AppBar>
         <Paper>
@@ -103,17 +103,29 @@ const PostCreationModal: React.FC<modal> = ({ open, handleModal }) => {
             <Typography variant="h4" className={classes.title}>
               Adicione uma imagem.
             </Typography>
-            <Input
-              type="file"
-              inputProps={{ accept: 'image/*' }}
-              className={classes.imageInput}
-              name="image"
-              id="image"
-              onChange={formik.handleChange}
-              value={formik.values.image}
-              error={formik.touched.image && !!formik.errors.image}
-            />
-            {!!formik.values.image && <img src={formik.values.image} />}
+            <label>
+              <Input
+                type="file"
+                inputProps={{ accept: 'image/*' }}
+                className={classes.imageInput}
+                name="image"
+                id="image"
+                onChange={formik.handleChange}
+                value={formik.values.image}
+                error={formik.touched.image && !!formik.errors.image}
+                style={{ display: 'none' }}
+              />
+              {!!formik.values.image && <img src={formik.values.image} />}
+              <Button
+                color="primary"
+                variant="contained"
+                component="span"
+                size="large"
+                className={classes.button}
+              >
+                Upload Image
+              </Button>
+            </label>
 
             {formik.touched.image && (
               <FormHelperText>{formik.errors.image}</FormHelperText>
@@ -138,6 +150,9 @@ const PostCreationModal: React.FC<modal> = ({ open, handleModal }) => {
                 maxRows="8"
                 minRows="5"
                 inputProps={{ maxLength: '462' }}
+                helperText={
+                  formik.touched.description && formik.errors.description
+                }
               />
             </FormControl>
             <Button

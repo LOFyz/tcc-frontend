@@ -94,7 +94,7 @@ const Dashboard: React.FC = () => {
         </Navigation>
       </div>
       {openPostCreation && (
-        <PostCreationModal onClose={handleOpenPostCreation} />
+        <PostCreationModal open handleModal={handleOpenPostCreation} />
       )}
     </Container>
   );

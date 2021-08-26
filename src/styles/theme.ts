@@ -14,11 +14,11 @@ const theme = createTheme({
       main: red.A400,
     },
     background: {
-      default: '#343a40',
+      default: '#fff',
     },
     text: {
-      primary: '#fff',
-      secondary: '#000',
+      primary: '#000',
+      secondary: '#fff',
     },
   },
 });

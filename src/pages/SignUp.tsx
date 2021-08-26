@@ -54,7 +54,7 @@ const SignUp: React.FC = () => {
         <Logo haveText={true}>
           <img src="" alt="" /> Sign Up
         </Logo>
-        <Form>
+        <Form noValidate onSubmit={formik.handleSubmit}>
           <Name>
             <input type="text" placeholder="Name" />
             <input type="text" placeholder="Last Name" />

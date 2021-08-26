@@ -1,39 +1,165 @@
-import { IconButton, Modal } from '@material-ui/core';
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  IconButton,
+  Input,
+  makeStyles,
+  Modal,
+  Paper,
+  TextField,
+  Theme,
+  Typography,
+} from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
+import { useFormik } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
+import * as Yup from 'yup';
 
-const PostCreationModal: React.FC<{ open: boolean; handleModal: () => void }> =
-  (open, handleModal) => {
-    return (
-      <Modal
-        open={open.open}
-        onClose={handleModal}
-        style={{
-          overflowY: 'scroll',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Container>
-          <AppBar>
-            <div>
-              <IconButton onClick={handleModal}>
-                <ArrowBack />
-              </IconButton>
-              <h1>Profile creation</h1>
-            </div>
-          </AppBar>
-        </Container>
-      </Modal>
-    );
-  };
+interface modal {
+  open: boolean;
+  handleModal: () => void;
+}
+
+const withStyles = makeStyles((theme: Theme) => ({
+  backButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    marginTop: theme.spacing(2),
+    textAlign: 'center',
+  },
+  imageInput: {
+    margin: theme.spacing(1),
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    margin: theme.spacing(1),
+    marginLeft: 'auto',
+    color: theme.palette.text.primary,
+  },
+  textField: { margin: theme.spacing(1) },
+  label: { color: theme.palette.text.primary },
+}));
+
+interface IFormData {
+  image: string;
+  description: string;
+}
+
+const initialValues: IFormData = {
+  image: '',
+  description: '',
+};
+
+const formSchema = Yup.object().shape({
+  image: Yup.string().required('Campo Obrigatório.'),
+  description: Yup.string().required('Campo Obrigatório'),
+});
+
+const PostCreationModal: React.FC<modal> = ({ open, handleModal }) => {
+  const classes = withStyles();
+
+  const formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: formSchema,
+    onSubmit: async (values) => {
+      return alert(values);
+    },
+  });
+
+  return (
+    <Modal
+      open={open}
+      onClose={handleModal}
+      style={{
+        overflowY: 'scroll',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Container>
+        <AppBar>
+          <div>
+            <IconButton onClick={handleModal} className={classes.backButton}>
+              <ArrowBack />
+            </IconButton>
+            <Typography variant="h4">Profile creation</Typography>
+          </div>
+        </AppBar>
+        <Paper>
+          <form
+            className={classes.form}
+            onSubmit={formik.handleSubmit}
+            noValidate
+          >
+            <Typography variant="h4" className={classes.title}>
+              Adicione uma imagem.
+            </Typography>
+            <Input
+              type="file"
+              inputProps={{ accept: 'image/*' }}
+              className={classes.imageInput}
+              name="image"
+              id="image"
+              onChange={formik.handleChange}
+              value={formik.values.image}
+              error={formik.touched.image && !!formik.errors.image}
+            />
+            {!!formik.values.image && <img src={formik.values.image} />}
+
+            {formik.touched.image && (
+              <FormHelperText>{formik.errors.image}</FormHelperText>
+            )}
+            <FormControl style={{ width: '80%' }}>
+              <TextField
+                className={classes.textField}
+                InputLabelProps={{ className: classes.label }}
+                fullWidth
+                name="description"
+                id="description"
+                label="Description"
+                value={formik.values.description}
+                color="primary"
+                variant="filled"
+                error={
+                  formik.touched.description && !!formik.errors.description
+                }
+                autoComplete="description"
+                onChange={formik.handleChange}
+                multiline
+                maxRows="8"
+                minRows="5"
+                inputProps={{ maxLength: '462' }}
+              />
+            </FormControl>
+            <Button
+              variant="contained"
+              type="submit"
+              color="primary"
+              size="large"
+              className={classes.button}
+            >
+              Enviar
+            </Button>
+          </form>
+        </Paper>
+      </Container>
+    </Modal>
+  );
+};
 
 export default PostCreationModal;
 
 const Container = styled.div`
-  width: 80%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   border-radius: 1%;
@@ -59,16 +185,8 @@ const AppBar = styled.div`
     align-items: center;
 
     svg {
-      height: 24px;
-      width: auto;
-      margin-right: 10px;
       color: ${(props) => props.theme.palette.text.primary};
       cursor: pointer;
-    }
-
-    h1 {
-      font: 700 30px 'Roboto';
-      color: ${(props) => props.theme.palette.text.primary};
     }
   }
 `;

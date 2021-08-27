@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ArrowBackIos } from '@material-ui/icons';
 import { Container, SignUpContainer, Logo, Form } from './SignUp';
 import { Link } from 'react-router-dom';

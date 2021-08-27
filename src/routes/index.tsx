@@ -7,6 +7,7 @@ import SignIn from '../pages/SignIn';
 import Profile from '../pages/Profile';
 import Schedule from '../pages/Schedule';
 import GroupCreation from '../pages/GroupCreation';
+import Group from '../pages/Group';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -16,6 +17,7 @@ const Routes: React.FC = () => (
     <Route path="/profile/:userId" component={Profile} />
     <Route path="/schedule/:userId" component={Schedule} />
     <Route path="/groupcreation" component={GroupCreation} />
+    <Route path="/group/:groupId" component={Group} />
   </Switch>
 );
 

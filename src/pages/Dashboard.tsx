@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+import Navigation from '../components/Navigation';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -6,11 +8,6 @@ import Post from '../components/Post';
 import { Add, Home, Message } from '@material-ui/icons';
 
 const Dashboard: React.FC = () => {
-  const [openPostCreation, setOpenPostCreation] = useState(false);
-  function handleOpenPostCreation() {
-    setOpenPostCreation(!openPostCreation);
-  }
-
   return (
     <Container>
       <Header>
@@ -69,43 +66,13 @@ const Dashboard: React.FC = () => {
             </li>
           </ul>
         </Body>
-        <Navigation>
-          <button>
-            <Link to="/messages">
-              <Message />
-            </Link>
-            <Link to="/messages" className="title">
-              Message
-            </Link>
-          </button>
-          <button>
-            <Link to="/">
-              <Home />
-            </Link>
-            <Link to="/" className="title">
-              Home
-            </Link>
-          </button>
-          <button onClick={handleOpenPostCreation}>
-            <Add />
-            <span className="title">Post</span>
-          </button>
-          <NotificationButton />
-        </Navigation>
+        <Navigation />
       </div>
-      {openPostCreation && (
-        <PostCreationModal open handleModal={handleOpenPostCreation} />
-      )}
     </Container>
   );
 };
 
 export default Dashboard;
-
-import styled from 'styled-components';
-import NotificationButton from '../components/NotificationButton';
-import Navigation from '../components/Navigation';
-import PostCreationModal from '../components/PostCreationModal';
 
 const Header = styled.div`
   width: 100%;

@@ -1,8 +1,9 @@
-import { Edit } from '@material-ui/icons';
 import React from 'react';
 import styled from 'styled-components';
 import Navigation from '../components/Navigation';
 import Post from '../components/Post';
+import { Link } from 'react-router-dom';
+import { Edit } from '@material-ui/icons';
 
 const Profile: React.FC = () => {
   return (
@@ -12,10 +13,9 @@ const Profile: React.FC = () => {
           <img src="" alt="" className="banner" />
           <div className="upper">
             <div className="imageAndInfo">
-              <img src="" alt="" className="profilePhoto" />
               <div className="info">
-                <h1>Dr Gears</h1>
-                <label htmlFor="">1000 followers | 1000 following</label>
+                <h1>914</h1>
+                <Link to="">Members</Link>
               </div>
             </div>
             <Edit />
@@ -179,7 +179,6 @@ const Header = styled.div`
 
     .description {
       position: relative;
-      bottom: 10rem;
 
       font-size: 2.2rem;
       padding: 1.159rem;
@@ -215,7 +214,6 @@ const Header = styled.div`
     .upper {
       position: relative;
       padding: 0 5rem;
-      bottom: 10rem;
 
       svg {
         width: 5.565rem;

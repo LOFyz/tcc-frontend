@@ -1,13 +1,51 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState } from 'react';
+import { Message, Home, Add } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import NotificationButton from './NotificationButton';
+import PostCreationModal from './PostCreationModal';
 
-const components: React.FC = ({ children }) => {
-  return <Navigation>{children}</Navigation>;
+const Navigation: React.FC = () => {
+  const [openPostCreation, setOpenPostCreation] = useState(false);
+  function handleOpenPostCreation() {
+    setOpenPostCreation(!openPostCreation);
+  }
+
+  return (
+    <>
+      <Container>
+        <button>
+          <Link to="/messages">
+            <Message />
+          </Link>
+          <Link to="/messages" className="title">
+            Message
+          </Link>
+        </button>
+        <button>
+          <Link to="/">
+            <Home />
+          </Link>
+          <Link to="/" className="title">
+            Home
+          </Link>
+        </button>
+        <button onClick={handleOpenPostCreation}>
+          <Add />
+          <span className="title">Post</span>
+        </button>
+        <NotificationButton />
+      </Container>
+      {openPostCreation && (
+        <PostCreationModal open handleModal={handleOpenPostCreation} />
+      )}
+    </>
+  );
 };
 
-export default components;
+export default Navigation;
 
-export const Navigation = styled.div`
+export const Container = styled.div`
   background: #66bb6a;
   width: 100%;
   height: 7.2rem;

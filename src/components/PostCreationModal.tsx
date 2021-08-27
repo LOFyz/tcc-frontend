@@ -100,7 +100,7 @@ const PostCreationModal: React.FC<modal> = ({ open, handleModal }) => {
             onSubmit={formik.handleSubmit}
             noValidate
           >
-            <Typography variant="h4" className={classes.title}>
+            <Typography variant="h4" className={classes.title} id="title">
               Adicione uma imagem.
             </Typography>
             <label>
@@ -183,6 +183,14 @@ const Container = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+
+  @media (orientation: portrait) {
+    width: 80%;
+
+    #title {
+      font-size: 2rem;
+    }
+  }
 `;
 
 const AppBar = styled.div`

@@ -10,6 +10,11 @@ const theme = createTheme({
       dark: '#2a8d4d',
       light: '#91f1a9',
     },
+    secondary: {
+      main: '#5fbe7a',
+      dark: '#2a8d4d',
+      light: '#91f1a9',
+    },
     error: {
       main: red.A400,
     },

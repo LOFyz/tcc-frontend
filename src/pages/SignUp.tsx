@@ -35,15 +35,6 @@ const SignUp: React.FC = () => {
     },
   });
 
-  useEffect(() => {
-    if (formik.errors.email) {
-      alert(formik.errors.email);
-    }
-    if (formik.errors.password) {
-      alert(formik.errors.password);
-    }
-  }, [formik.errors.email, formik.errors.password]);
-
   return (
     <Container>
       <SignUpContainer>
@@ -56,12 +47,90 @@ const SignUp: React.FC = () => {
         </Logo>
         <Form noValidate onSubmit={formik.handleSubmit}>
           <Name>
-            <input type="text" placeholder="Name" />
-            <input type="text" placeholder="Last Name" />
+            <div>
+              <input
+                type="text"
+                placeholder="Name"
+                name="name"
+                id="name"
+                autoComplete="name"
+                autoFocus
+                onChange={formik.handleChange}
+                value={formik.values.name}
+                style={{
+                  border:
+                    formik.touched.name && !!formik.errors.name
+                      ? '0.1rem solid #ff0000'
+                      : 'none',
+                }}
+              />
+              {formik.touched.name && formik.errors.name && (
+                <span style={{ color: '#ff0000' }}>{formik.errors.name}</span>
+              )}
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Last Name"
+                name="lastName"
+                id="lastName"
+                autoComplete="lastName"
+                autoFocus
+                onChange={formik.handleChange}
+                value={formik.values.lastName}
+                style={{
+                  border:
+                    formik.touched.lastName && !!formik.errors.lastName
+                      ? '0.1rem solid #ff0000'
+                      : 'none',
+                }}
+              />
+              {formik.touched.lastName && formik.errors.lastName && (
+                <span style={{ color: '#ff0000' }}>
+                  {formik.errors.lastName}
+                </span>
+              )}
+            </div>
           </Name>
-          <input type="text" placeholder="Email" />
-          <input type="text" placeholder="Password" />
-          <input type="button" value="Submit" />
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            id="email"
+            autoComplete="email"
+            autoFocus
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            style={{
+              border:
+                formik.touched.email && !!formik.errors.email
+                  ? '0.1rem solid #ff0000'
+                  : 'none',
+            }}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <span style={{ color: '#ff0000' }}>{formik.errors.email}</span>
+          )}
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            id="password"
+            autoComplete="password"
+            autoFocus
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            style={{
+              border:
+                formik.touched.password && !!formik.errors.password
+                  ? '0.1rem solid #ff0000'
+                  : 'none',
+            }}
+          />
+          {formik.touched.password && formik.errors.password && (
+            <span style={{ color: '#ff0000' }}>{formik.errors.password}</span>
+          )}
+          <input type="submit" value="Submit" />
           <Link to="/signin">{'Already have an account?'}</Link>
         </Form>
       </SignUpContainer>
@@ -135,6 +204,10 @@ export const Form = styled.form`
   align-items: center;
   justify-content: center;
 
+  span {
+    font-size: 1rem;
+  }
+
   input {
     width: 28.4rem;
     height: 3rem;
@@ -161,6 +234,7 @@ export const Form = styled.form`
       font-size: 1.2rem;
 
       border-radius: 0.5rem 0.5rem 0 0;
+      cursor: pointer;
     }
   }
   a {
@@ -188,6 +262,15 @@ const Name = styled.div`
   justify-content: space-around;
   text-decoration: none;
 
+  div {
+    display: flex;
+    flex-direction: column;
+
+    & + div {
+      margin-left: 0.8rem;
+    }
+  }
+
   input {
     width: 13.8rem;
     height: 3rem;
@@ -199,9 +282,5 @@ const Name = styled.div`
     color: #acacac;
     font-size: 1.2rem;
     font-family: Roboto;
-
-    & + input {
-      margin-left: 0.8rem;
-    }
   }
 `;

@@ -29,15 +29,6 @@ const SignUp: React.FC = () => {
     },
   });
 
-  useEffect(() => {
-    if (formik.errors.email) {
-      alert(formik.errors.email);
-    }
-    if (formik.errors.password) {
-      alert(formik.errors.password);
-    }
-  }, [formik.errors.email, formik.errors.password]);
-
   return (
     <Container>
       <SignUpContainer>
@@ -50,19 +41,43 @@ const SignUp: React.FC = () => {
         </Logo>
         <Form noValidate onSubmit={formik.handleSubmit}>
           <input
+            type="email"
+            placeholder="Email"
             name="email"
             id="email"
+            autoComplete="email"
             autoFocus
-            type="text"
-            placeholder="Email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            style={{
+              border:
+                formik.touched.email && !!formik.errors.email
+                  ? '0.1rem solid #ff0000'
+                  : 'none',
+            }}
           />
+          {formik.touched.email && formik.errors.email && (
+            <span style={{ color: '#ff0000' }}>{formik.errors.email}</span>
+          )}
           <input
+            type="password"
+            placeholder="Password"
             name="password"
             id="password"
+            autoComplete="password"
             autoFocus
-            type="text"
-            placeholder="Password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            style={{
+              border:
+                formik.touched.password && !!formik.errors.password
+                  ? '0.1rem solid #ff0000'
+                  : 'none',
+            }}
           />
+          {formik.touched.password && formik.errors.password && (
+            <span style={{ color: '#ff0000' }}>{formik.errors.password}</span>
+          )}
           <input type="submit" value="Submit" />
           <Link to="/signup">{'Doesnt have an account?'}</Link>
         </Form>

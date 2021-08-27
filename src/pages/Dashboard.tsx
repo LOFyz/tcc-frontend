@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import Navigation from '../components/Navigation';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/SearchBar';
 import Post from '../components/Post';
-import { Add, Home, Message } from '@material-ui/icons';
 
 const Dashboard: React.FC = () => {
   return (

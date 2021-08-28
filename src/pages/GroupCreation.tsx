@@ -2,13 +2,7 @@ import React from 'react';
 import {
   createStyles,
   FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  FormLabel,
   makeStyles,
-  Radio,
-  RadioGroup,
   TextField,
   CardContent,
   Card,
@@ -38,6 +32,7 @@ interface IFormData {
   privacyTerm: boolean;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const initialValues: IFormData = {
   name: '',
   lastName: '',
@@ -59,6 +54,7 @@ const initialValues: IFormData = {
   privacyTerm: false,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const formSchema = Yup.object().shape({
   name: Yup.string()
     .required('Campo Obrigatório.')
@@ -315,6 +311,7 @@ const Divider = styled.div`
   font: 400 2rem Roboto;
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Confirmacao: React.FC = () => {
   const classes = useStyles();
 

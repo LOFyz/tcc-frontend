@@ -5,8 +5,27 @@ import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/SearchBar';
 import Post from '../components/Post';
+// import { useSocket } from '../contexts/SocketContext';
 
 const Dashboard: React.FC = () => {
+  // const { socket } = useSocket();
+
+  // const handleSendMessage = (message: string, recipients: any[]) => {
+  //   socket!.emit('send-message', { message, recipients });
+  // };
+
+  // React.useEffect(() => {
+  //   if (!socket) return;
+
+  //   socket.on('send-message', ({ message, recipients }) => {
+  //     console.log(message);
+  //   });
+
+  //   return () => {
+  //     socket.off('send-message');
+  //   };
+  // }, [socket]);
+
   return (
     <Container>
       <Header>

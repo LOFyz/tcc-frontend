@@ -4,6 +4,7 @@ import { Container, SignUpContainer, Logo, Form } from './SignUp';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useAuth } from '../contexts/AuthContext';
 
 interface IFormData {
   email: string;
@@ -21,11 +22,29 @@ const formSchema = Yup.object().shape({
 });
 
 const SignUp: React.FC = () => {
+  const { signIn, failed } = useAuth();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: formSchema,
     onSubmit: async (values) => {
-      return alert(values);
+      try {
+        await signIn(values);
+        formik.setSubmitting(false);
+        if (failed) {
+          formik.errors.email = 'An error has occurred in the autentication.';
+          formik.errors.password =
+            'An error has occurred in the autentication.';
+          formik.touched.email = true;
+          formik.touched.password = true;
+        }
+      } catch (err) {
+        alert(err);
+        formik.errors.email = 'An error has occurred in the autentication.';
+        formik.errors.password = 'An error has occurred in the autentication.';
+        formik.touched.email = true;
+        formik.touched.password = true;
+      }
     },
   });
 

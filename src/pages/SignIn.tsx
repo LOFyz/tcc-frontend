@@ -31,15 +31,10 @@ const SignUp: React.FC = () => {
       try {
         await signIn(values);
         formik.setSubmitting(false);
-        if (failed) {
-          formik.errors.email = 'An error has occurred in the autentication.';
-          formik.errors.password =
-            'An error has occurred in the autentication.';
-          formik.touched.email = true;
-          formik.touched.password = true;
-        }
       } catch (err) {
         alert(err);
+      }
+      if (failed) {
         formik.errors.email = 'An error has occurred in the autentication.';
         formik.errors.password = 'An error has occurred in the autentication.';
         formik.touched.email = true;

@@ -1,37 +1,52 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import styled from 'styled-components';
 import { ArrowBackIos } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import { useAuth } from '../contexts/AuthContext';
 
 interface IFormData {
   name: string;
-  lastName: string;
   email: string;
   password: string;
+  is_teacher: boolean;
 }
 
 const initialValues: IFormData = {
   name: '',
-  lastName: '',
   email: '',
   password: '',
+  is_teacher: false,
 };
 
 const formSchema = Yup.object().shape({
   name: Yup.string().required('Campo Obrigatório.'),
-  lastName: Yup.string().required('Campo Obrigatório'),
   email: Yup.string().email('E-mail inválido').required('Campo Obrigatório.'),
   password: Yup.string().required('Campo Obrigatório'),
+  is_teacher: Yup.boolean().required('Campo Obrigatório'),
 });
 
 const SignUp: React.FC = () => {
+  const { signUp } = useAuth();
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: formSchema,
     onSubmit: async (values) => {
-      return alert(values);
+      try {
+        await signUp(values);
+        formik.setSubmitting(false);
+      } catch (err) {
+        alert(err);
+        formik.errors.name = 'An error has occurred in the sign up.';
+        formik.errors.email = 'An error has occurred in the sign up.';
+        formik.errors.password = 'An error has occurred in the sign up.';
+        formik.touched.name = true;
+        formik.touched.email = true;
+        formik.touched.password = true;
+      }
     },
   });
 
@@ -46,52 +61,25 @@ const SignUp: React.FC = () => {
           <img src="" alt="" /> Sign Up
         </Logo>
         <Form noValidate onSubmit={formik.handleSubmit}>
-          <Name>
-            <div>
-              <input
-                type="text"
-                placeholder="Name"
-                name="name"
-                id="name"
-                autoComplete="name"
-                autoFocus
-                onChange={formik.handleChange}
-                value={formik.values.name}
-                style={{
-                  border:
-                    formik.touched.name && !!formik.errors.name
-                      ? '0.1rem solid #ff0000'
-                      : 'none',
-                }}
-              />
-              {formik.touched.name && formik.errors.name && (
-                <span style={{ color: '#ff0000' }}>{formik.errors.name}</span>
-              )}
-            </div>
-            <div>
-              <input
-                type="text"
-                placeholder="Last Name"
-                name="lastName"
-                id="lastName"
-                autoComplete="lastName"
-                autoFocus
-                onChange={formik.handleChange}
-                value={formik.values.lastName}
-                style={{
-                  border:
-                    formik.touched.lastName && !!formik.errors.lastName
-                      ? '0.1rem solid #ff0000'
-                      : 'none',
-                }}
-              />
-              {formik.touched.lastName && formik.errors.lastName && (
-                <span style={{ color: '#ff0000' }}>
-                  {formik.errors.lastName}
-                </span>
-              )}
-            </div>
-          </Name>
+          <input
+            type="name"
+            placeholder="Name"
+            name="name"
+            id="name"
+            autoComplete="name"
+            autoFocus
+            onChange={formik.handleChange}
+            value={formik.values.name}
+            style={{
+              border:
+                formik.touched.name && !!formik.errors.name
+                  ? '0.1rem solid #ff0000'
+                  : 'none',
+            }}
+          />
+          {formik.touched.name && formik.errors.name && (
+            <span style={{ color: '#ff0000' }}>{formik.errors.name}</span>
+          )}
           <input
             type="email"
             placeholder="Email"
@@ -252,35 +240,5 @@ export const Form = styled.form`
     color: #338a3e;
 
     border-radius: 0 0 0.5rem 0.5rem;
-  }
-`;
-
-const Name = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  text-decoration: none;
-
-  div {
-    display: flex;
-    flex-direction: column;
-
-    & + div {
-      margin-left: 0.8rem;
-    }
-  }
-
-  input {
-    width: 13.8rem;
-    height: 3rem;
-    background: #ffffff;
-    box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.25);
-    border-radius: 0.5rem;
-    border: none;
-    padding-left: 1rem;
-    color: #acacac;
-    font-size: 1.2rem;
-    font-family: Roboto;
   }
 `;

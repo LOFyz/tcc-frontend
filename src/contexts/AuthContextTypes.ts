@@ -58,6 +58,13 @@ export type SignInData = {
   password: string;
 };
 
+export type SignUpData = {
+  name: string;
+  email: string;
+  password: string;
+  is_teacher: boolean;
+};
+
 export type AuthResponse = {
   token: Token;
   user: User;
@@ -66,7 +73,7 @@ export type AuthResponse = {
 export type AuthContextType = {
   user: User | null;
   signIn: (data: SignInData) => Promise<void>;
+  signUp: (data: SignUpData) => Promise<void>;
   logOut: () => void;
   autenticated: boolean;
-  failed: boolean;
 };

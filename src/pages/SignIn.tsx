@@ -22,7 +22,7 @@ const formSchema = Yup.object().shape({
 });
 
 const SignUp: React.FC = () => {
-  const { signIn, failed } = useAuth();
+  const { signIn } = useAuth();
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -32,9 +32,6 @@ const SignUp: React.FC = () => {
         await signIn(values);
         formik.setSubmitting(false);
       } catch (err) {
-        alert(err);
-      }
-      if (failed) {
         formik.errors.email = 'An error has occurred in the autentication.';
         formik.errors.password = 'An error has occurred in the autentication.';
         formik.touched.email = true;

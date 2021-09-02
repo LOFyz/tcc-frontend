@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom';
 
 import SearchBar from '../components/SearchBar';
 import Post from '../components/Post';
-// import { useSocket } from '../contexts/SocketContext';
+import { useAuth } from '../contexts/AuthContext';
+import imagePlaceholder from '../assets/profile_placeholder.jpg';
 
 const Dashboard: React.FC = () => {
+  const { user } = useAuth();
+
   // const { socket } = useSocket();
 
   // const handleSendMessage = (message: string, recipients: any[]) => {
@@ -30,11 +33,19 @@ const Dashboard: React.FC = () => {
     <Container>
       <Header>
         <h1>Dashboard</h1>
-        <Link to={`/profile/1`}>
-          {/* Adicionar id quando conectar ao banco, com um operador ternario,
-          caso não tenha usuario logado mandar pra tela de login  */}
-          <img src="" alt="" />
-        </Link>
+        {user && (
+          <Link to={`/profile/${user?.id}`}>
+            {user.profileImage ? (
+              <img
+                src={user?.profileImage.url}
+                alt="profile_image"
+                className="profileImage"
+              />
+            ) : (
+              <img src={imagePlaceholder} alt="" className="profileImage" />
+            )}
+          </Link>
+        )}
       </Header>
       <div className="container">
         <Body>
@@ -114,7 +125,7 @@ const Header = styled.div`
     color: #000000;
   }
 
-  img {
+  .profileImage {
     background: #aaaaaa;
     border: 0.1rem solid rgba(0, 0, 0, 0.15);
     box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.25);

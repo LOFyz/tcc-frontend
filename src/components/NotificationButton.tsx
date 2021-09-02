@@ -4,9 +4,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const NotificationButton: React.FC = () => {
-  const [notification] = useState(true);
+  const [notification] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
-  // const [notification, setNotification] = useState(false);
 
   return (
     <Container clicked={showNotification}>
@@ -15,47 +14,22 @@ const NotificationButton: React.FC = () => {
           setShowNotification(!showNotification);
         }}
       >
-        {notification ? <NotificationsActive /> : <Notifications />}
+        {notification.length < 0 ? <NotificationsActive /> : <Notifications />}
         <label className="title">Notification</label>
       </button>
-      {notification && (
+      {notification.length < 0 && (
         <ul className="notifications">
-          <li>
-            <div className="notification">
-              <p>Notificação</p>
-              <br />
-              <label className="description">
-                Adipisicing elit. Harum, in.
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="notification">
-              <p>Notificação</p>
-              <br />
-              <label className="description">
-                Adipisicing elit. Harum, in.
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="notification">
-              <p>Notificação</p>
-              <br />
-              <label className="description">
-                Adipisicing elit. Harum, in.
-              </label>
-            </div>
-          </li>
-          <li>
-            <div className="notification">
-              <p>Notificação</p>
-              <br />
-              <label className="description">
-                Adipisicing elit. Harum, in.
-              </label>
-            </div>
-          </li>
+          {notification.map((e) => (
+            <li key={e}>
+              <div className="notification">
+                <p>Notificação</p>
+                <br />
+                <label className="description">
+                  Adipisicing elit. Harum, in.
+                </label>
+              </div>
+            </li>
+          ))}
         </ul>
       )}
     </Container>

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import { Message, Home, Add } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
-import NotificationButton from './NotificationButton';
 import PostCreationModal from './PostCreationModal';
 
 const Navigation: React.FC = () => {
@@ -34,7 +33,7 @@ const Navigation: React.FC = () => {
           <Add />
           <span className="title">Post</span>
         </button>
-        <NotificationButton />
+        {/* <NotificationButton /> */}
       </Container>
       {openPostCreation && (
         <PostCreationModal open handleModal={handleOpenPostCreation} />

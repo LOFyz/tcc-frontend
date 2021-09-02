@@ -1,11 +1,12 @@
+/* eslint-disable camelcase */
 import { parseCookies, setCookie, destroyCookie } from 'nookies';
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import api from '../services/api';
 import {
   AuthContextType,
   AuthResponse,
   SignInData,
+  SignUpData,
   User,
 } from './AuthContextTypes';
 
@@ -16,10 +17,11 @@ export const AuthContext = React.createContext<AuthContextType>(
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = React.useState<User | null>(null);
   const [autenticated, setAutenticated] = React.useState(false);
-  const [failed, setFailed] = React.useState(false);
 
   React.useEffect(() => {
     const { 'ifconnect.token': token } = parseCookies();
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    setAutenticated(!!token);
 
     if (token && !user) {
       const { 'ifconnect.user': userID } = parseCookies();
@@ -28,7 +30,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         setUser(user);
       });
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function signIn({ email, password }: SignInData): Promise<void> {
     try {
@@ -39,7 +41,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         password,
       });
 
-      api.defaults.headers.Authorization = `Bearer ${token.token}`;
+      api.defaults.headers.common['Authorization'] = `Bearer ${token.token}`;
 
       setUser(user);
 
@@ -51,12 +53,29 @@ export const AuthProvider: React.FC = ({ children }) => {
         expires: new Date(token.expires_at),
       });
 
-      setFailed(false);
       setAutenticated(true);
     } catch (error) {
       console.log(error);
-      setFailed(true);
       setAutenticated(false);
+      throw new Error(error);
+    }
+  }
+
+  async function signUp({
+    name,
+    email,
+    password,
+    is_teacher,
+  }: SignUpData): Promise<void> {
+    try {
+      await api.post('/users', {
+        name,
+        email,
+        password,
+        is_teacher,
+      });
+    } catch (error) {
+      throw new Error(error);
     }
   }
 
@@ -64,13 +83,12 @@ export const AuthProvider: React.FC = ({ children }) => {
     destroyCookie(undefined, 'ifconnect.token', { path: '/' });
     destroyCookie(undefined, 'ifconnect.user', { path: '/' });
 
-    setFailed(false);
     setAutenticated(false);
   }
 
   return (
     <AuthContext.Provider
-      value={{ user, signIn, logOut, autenticated, failed }}
+      value={{ user, signIn, signUp, logOut, autenticated }}
     >
       {children}
     </AuthContext.Provider>
